@@ -5,29 +5,24 @@ public class ColonistController : MonoBehaviour
 {
 	[HideInInspector]
 	public bool facingRight = true;			// For determining which way the player is currently facing.
+
 	[HideInInspector]
 	public bool jump = false;				// Condition for whether the player should jump.
 
-	public float damageFallDistance;			// Vertical distance at which if this colonist is spawned, it will die.
-	public float moveForce = 365f;			// Amount of force added to move the player left and right.
+	public float damageFallDistance;		// Vertical distance at which if this colonist is spawned, it will die.
 	public float moveSpeed = 2f;			// The speed the colonist moves at.
-
+	public bool grounded = false;			// Whether or not the player is grounded.
 	public AudioClip wilhelmScream;			// Self-explanatory.
 	public AudioClip bringItOn;				// "Bring it on!"
 
-
-	private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
-	public bool grounded = false;			// Whether or not the player is grounded.
-	private Animator anim;					// Reference to the player's animator component.
-	private float horizontalInput;			// The direction the colonist is moving.
+
 
 
 	void Awake()
 	{
 		// Setting up references.
 		groundCheck = transform.Find("groundCheck");
-		anim = GetComponent<Animator>();
 
 		// Calculate distance to ground.
 		RaycastHit2D downwardRay = Physics2D.Raycast(groundCheck.position, Vector2.down);

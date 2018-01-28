@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ColonistHealth : MonoBehaviour
 {	
+	public GameObject fightCloud;				// Prefab of the fight cloud effect.
+
 	[HideInInspector]
 	public float touchdownDamage = 0f;			// The damage done to the colonist when they've touched down for the first time.
 
@@ -134,5 +136,14 @@ public class ColonistHealth : MonoBehaviour
 
 		// Set the scale of the health bar to be proportional to the player's health.
 		healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1, 1);
+	}
+
+	void OnFight()
+	{
+		// Create a quaternion with a random rotation in the z-axis.
+		Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+
+		// Instantiate the explosion where the rocket is with the random rotation.
+		Instantiate(fightCloud, transform.position, randomRotation);
 	}
 }

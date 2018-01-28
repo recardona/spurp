@@ -372,13 +372,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fef230a6e39f4dd6b1d94c9eade0867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fightCloud: {fileID: 100000, guid: 42404bf7d14c342f69690c9961a7530d, type: 2}
   health: 100
   healthBar: {fileID: 212961143615284400}
   nativeController: {fileID: 114894996878909914}
-  repeatDamagePeriod: 2
+  repeatDamagePeriod: 0.25
   ouchClips: []
-  hurtForce: 10
-  damageAmount: 10
+  hurtForce: 500
+  damageAmount: 1
 --- !u!114 &114586069494108136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,17 +404,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08572ec0c6abb4dd8bd3afd516832205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  healthBar: {fileID: 212961143615284400}
-  moveSpeed: 2
-  HP: 2
-  deadEnemy: {fileID: 0}
-  damagedEnemy: {fileID: 0}
   deathClips:
   - {fileID: 8300000, guid: 039514349165244c6a43be5c3070d14b, type: 3}
   - {fileID: 8300000, guid: 85020549641fa452d9136ac2fc852efd, type: 3}
   - {fileID: 8300000, guid: 2e20b5071623f44cf9c72acf016de4b6, type: 3}
-  hundredPointsUI: {fileID: 0}
+  moveSpeed: 2
   deathSpinMin: -100
   deathSpinMax: 100
 --- !u!212 &212311995403889024

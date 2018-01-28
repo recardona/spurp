@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NativeHealth : MonoBehaviour 
 {
+	public GameObject fightCloud;				// Prefab of the fight cloud effect.
+
 	public float health = 100f;					// The colonist's health.
 	public SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	public NativeController nativeController;	// Reference to the NativeController script.
@@ -38,6 +40,7 @@ public class NativeHealth : MonoBehaviour
 					// ... take damage and reset the lastHitTime.
 					TakeDamage(col.transform); 
 					lastHitTime = Time.time; 
+					OnFight();
 				}
 
 				// If the native does not have any health, kill it.
@@ -77,5 +80,15 @@ public class NativeHealth : MonoBehaviour
 
 		// Set the scale of the health bar to be proportional to the player's health.
 		healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1, 1);
+	}
+
+
+	void OnFight()
+	{
+		// Create a quaternion with a random rotation in the z-axis.
+		Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+
+		// Instantiate the explosion where the rocket is with the random rotation.
+		Instantiate(fightCloud, transform.position, randomRotation);
 	}
 }

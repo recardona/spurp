@@ -611,6 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4099ac9ed36ab412b97d0a4159053f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fightCloud: {fileID: 100000, guid: 42404bf7d14c342f69690c9961a7530d, type: 2}
   touchdownDamage: 0
   health: 100
   healthBar: {fileID: 212938443606936014}
