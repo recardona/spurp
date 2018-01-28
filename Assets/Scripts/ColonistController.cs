@@ -68,6 +68,30 @@ public class ColonistController : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+		// Get all the natives.
+		GameObject[] natives = GameObject.FindGameObjectsWithTag("Enemy");
+
+		// Tally where each native is, relative to this colonist.
+		int onTheLeft = 0;
+		int onTheRight = 0;
+
+		foreach (GameObject native in natives) 
+		{
+			if (native.transform.position.x - transform.position.x < 0)
+				onTheLeft++;
+
+			else
+				onTheRight++;
+		}
+
+		// If there are more on the left, and we're going right, flip.
+		if (onTheLeft > onTheRight && transform.localScale.x > 0)
+			Flip();
+
+		// If there are more on the right, and we're going left, flip.
+		else if (onTheRight > onTheLeft && transform.localScale.x < 0)
+			Flip();
+
 		// Set the colonist's velocity to moveSpeed in the x direction.
 		GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 

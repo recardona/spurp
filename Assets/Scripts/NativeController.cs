@@ -37,6 +37,30 @@ public class NativeController : MonoBehaviour
 
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);	
+
+		// Get all the colonists.
+		GameObject[] colonists = GameObject.FindGameObjectsWithTag("Friend");
+
+		// Tally where each colonist is, relative to this native.
+		int onTheLeft = 0;
+		int onTheRight = 0;
+
+		foreach (GameObject colonist in colonists) 
+		{
+			if (colonist.transform.position.x - transform.position.x < 0)
+				onTheLeft++;
+			
+			else
+				onTheRight++;
+		}
+
+		// If there are more on the left, and we're going right, flip.
+		if (onTheLeft > onTheRight && transform.localScale.x > 0)
+			Flip();
+
+		// If there are more on the right, and we're going left, flip.
+		else if (onTheRight > onTheLeft && transform.localScale.x < 0)
+			Flip();
 	}
 	
 	public void Hurt()

@@ -65,6 +65,7 @@ public class ColonistHealth : MonoBehaviour
 					// ... take damage and reset the lastHitTime.
 					TakeDamage(col.transform); 
 					lastHitTime = Time.time; 
+					OnFight();
 				}
 				// If the player doesn't have health, do some stuff, let him fall into the river to reload the level.
 				else
