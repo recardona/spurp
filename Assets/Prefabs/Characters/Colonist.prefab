@@ -605,6 +605,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ddd0ca15e5d0a42b98f08337c1690bb1, type: 3}
   tauntProbability: 50
   tauntDelay: 1
+  wilhelmScream: {fileID: 8300000, guid: e12390effe48c4820adcb013775995ad, type: 3}
   grounded: 0
 --- !u!114 &114235286739301984
 MonoBehaviour:

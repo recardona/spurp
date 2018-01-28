@@ -8,7 +8,6 @@ public class ColonistController : MonoBehaviour
 	[HideInInspector]
 	public bool jump = false;				// Condition for whether the player should jump.
 
-
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.
 	public float moveSpeed = 2f;			// The speed the colonist moves at.
 	public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
@@ -16,6 +15,7 @@ public class ColonistController : MonoBehaviour
 	public AudioClip[] taunts;				// Array of clips for when the player taunts.
 	public float tauntProbability = 50f;	// Chance of a taunt happening.
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
+	public AudioClip wilhelmScream;			// Self-explanatory.
 
 
 	private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
@@ -31,6 +31,13 @@ public class ColonistController : MonoBehaviour
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
 
+		// If there is no audio playing...
+		if(!GetComponent<AudioSource>().isPlaying)
+		{
+			// Play the scream.
+			GetComponent<AudioSource>().clip = wilhelmScream;
+			GetComponent<AudioSource>().Play();
+		}
 	}
 
 
