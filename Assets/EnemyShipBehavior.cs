@@ -6,6 +6,17 @@ public class EnemyShipBehavior : MonoBehaviour {
 	
 	public int health;
 	public AudioSource myExplodeAudioSource;
+	public bool missileLaunch;
+
+	public bool readyToDie;
+	public GameObject emissile;
+
+	public Animator animator;
+
+	public AudioSource myAudio;
+
+	private float missileTimeStamp;
+	private float missileCoolDownPeriodInSeconds;
 
 	public void takeDamage(){
 
@@ -22,19 +33,96 @@ public class EnemyShipBehavior : MonoBehaviour {
 			myExplodeAudioSource = GameObject.Find ("eShipExplodeSound").GetComponent<AudioSource> ();
 			myExplodeAudioSource.PlayOneShot(myExplodeAudioSource.clip);
 
-			Destroy(this.gameObject);
+			animator.SetTrigger ("enemyShipDead");
+
 			// also need to destroy the chain and the anchor, just for niceness.
 		}
 	}
 	// Use this for initialization
 	void Start () {
+		readyToDie = false;
 
-
+		animator = GetComponent<Animator> ();
 //		health = 6;
+		missileCoolDownPeriodInSeconds = 4;
+
+		missileLaunch = true;
+
+		myAudio = GetComponent<AudioSource> ();
+				myAudio.PlayOneShot (myAudio.clip);
+
+//		myAudio.Play ();
+
+
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+
+		if (readyToDie) {
+
+			if (!this.animator.GetCurrentAnimatorStateInfo (0).IsTag ("boom") &&
+			    !this.animator.GetCurrentAnimatorStateInfo (0).IsTag ("idle")) {
+
+				// if animation not playing then die
+
+				Destroy (this.gameObject);
+
+			}
+		}
+
+		// fire missile
+
+		if (missileLaunch == true) {
+
+			if (missileTimeStamp <= Time.time) {
+
+				missileTimeStamp = Time.time + missileCoolDownPeriodInSeconds;
+
+
+
+				GameObject missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+
+				missile.GetComponent<eMissileBehavior> ().myShip = this.gameObject;
+
+				Vector2 vecMissile = new Vector2 (transform.rotation.x * 10, transform.rotation.z * 10);
+				double radians;
+				double temp;
+				if (transform.eulerAngles.z >= 270) {
+					temp = transform.eulerAngles.z - 270;
+				} else {
+					temp = transform.eulerAngles.z + 90;
+
+				}
+				radians = (System.Math.PI / 180) * temp;
+
+				vecMissile = new Vector2 (200, 200);
+
+				Debug.Log ("eship z is " + transform.eulerAngles.z);
+				Debug.Log ("temp is " + temp);
+
+				Debug.Log ("First is " + (float)System.Math.Cos (radians) * 200.0f);
+				Debug.Log ("Second is " + -(float)System.Math.Sin (radians) * 200.0f);
+
+				vecMissile = new Vector2 ((float)System.Math.Cos (radians) * 200.0f, (float)System.Math.Sin (radians) * 200.0f);
+
+
+
+				// need to adjust the vector so that they get ejected in the right direction relative to the
+				// ship's orientation
+				//				Transform mtran = missile.GetComponent<Transform>();
+				//
+				//				mtran.rotation = transform.rotation;
+				//				mtran.Rotate (0,0,transform.rotation.z);
+
+
+//				missile.GetComponent<Rigidbody2D> ().AddForce (vecMissile);
+				missile.GetComponent<Rigidbody2D> ().AddForce (new Vector2(200,200));
+
+			}
+		}
+
 
 	}
 }

@@ -80,7 +80,7 @@ public class enemyShipManagement : MonoBehaviour {
 			}
 
 
-			enemyShip = Instantiate (enemyShipPrefab, new Vector3 (spawn.transform.position.x, spawn.transform.position.y, spawn.transform.position.z), 
+			enemyShip = Instantiate (enemyShipPrefab, new Vector3 (spawn.transform.position.x, spawn.transform.position.y, spawn.transform.position.z+20), 
 				spawn.transform.rotation);
 
 

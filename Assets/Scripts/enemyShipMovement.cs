@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class enemyShipMovement : MonoBehaviour {
 
+	AudioSource myAudio;
 
 	public void buggerOff() {
 
@@ -12,6 +13,11 @@ public class enemyShipMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		myAudio = GetComponent<AudioSource> ();
+//		myAudio.PlayOneShot (myAudio.clip);
+
+		myAudio.Play ();
 
 	}
 	
