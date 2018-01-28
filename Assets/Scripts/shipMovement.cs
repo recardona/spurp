@@ -42,14 +42,16 @@ public class shipMovement : MonoBehaviour {
 
 
 
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
+
+
 		Debug.Log ("COLLISION");
 
 		print (col.gameObject.name);
 		if(col.gameObject.name == "planetGround")
 		{
-			Destroy(col.gameObject);
+			Destroy(this.gameObject);
 		}
 	}
 
