@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212320612983126608}
   - component: {fileID: 50848941286354194}
   - component: {fileID: 114502552936984480}
+  - component: {fileID: 61399821254551924}
   m_Layer: 0
   m_Name: pmissile
   m_TagString: Untagged
@@ -35,13 +36,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504569460261530}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.7634697, y: 1.088496, z: -0.06546949}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 3.7634697, y: 1.088496, z: -6.78}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!50 &50848941286354194
 Rigidbody2D:
   serializedVersion: 4
@@ -55,13 +56,38 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &61399821254551924
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504569460261530}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.017840862, y: -0.0142726}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.06, y: 1.57}
+    newSize: {x: 1.06, y: 1.57}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2916851, y: 0.3320977}
+  m_EdgeRadius: 0
 --- !u!114 &114502552936984480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8337227190c8748b6b29fa77f5d5bf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myShip: {fileID: 0}
+  myFlame: {fileID: 0}
 --- !u!212 &212320612983126608
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -107,12 +135,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b90e719d079e34327a7a7394d09802ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41ce0fed8e7be4a3aa4fb2385e5a1f7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.57, y: 1.06}
+  m_Size: {x: 1.06, y: 1.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
