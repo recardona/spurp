@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: -215833656, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1234178007968888
 GameObject:
   m_ObjectHideFlags: 1
@@ -59,7 +59,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1482773005477068
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,10 +86,9 @@ GameObject:
   - component: {fileID: 114493013736791596}
   - component: {fileID: 114448768814329306}
   - component: {fileID: 50484724498366768}
-  - component: {fileID: 61214835573227890}
-  - component: {fileID: 58839672922827752}
   - component: {fileID: 95062961108344496}
   - component: {fileID: 82304126724997394}
+  - component: {fileID: 70569923030534608}
   m_Layer: 9
   m_Name: Colonist
   m_TagString: Friend
@@ -167,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 1609819507059454}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4470052301024078}
   m_RootOrder: 2
@@ -192,8 +191,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1576119716835696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalPosition: {x: -3.79, y: 1.46, z: -2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1.2}
   m_Children:
   - {fileID: 4129434725616804}
   - {fileID: 4039526903206284}
@@ -223,7 +222,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747546105484446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4602315926316698}
@@ -277,8 +276,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58839672922827752
-CircleCollider2D:
+--- !u!70 &70569923030534608
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -289,34 +288,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.32}
-  serializedVersion: 2
-  m_Radius: 0.37
---- !u!61 &61214835573227890
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576119716835696}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.61, y: 1.17}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.009395977, y: 0.0047963858}
+  m_Size: {x: 0.19664903, y: 0.44813314}
+  m_Direction: 0
 --- !u!82 &82304126724997394
 AudioSource:
   m_ObjectHideFlags: 1
@@ -336,7 +310,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.98440933
+  MinDistance: 0.36571217
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -416,7 +390,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.6296768
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -566,7 +540,7 @@ Animator:
   m_GameObject: {fileID: 1576119716835696}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ad1c509ffb314b2b933a73b401aae26, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8cdf65f16a007416d8724b13d38402f9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -598,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920d9cda9ba55472196c4fa22561fa4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.9, z: 0}
+  offset: {x: 0, y: 0.5, z: 0}
   target: {fileID: 4470052301024078}
 --- !u!114 &114448768814329306
 MonoBehaviour:
@@ -637,11 +611,10 @@ MonoBehaviour:
   facingRight: 1
   jump: 0
   damageFallDistance: 7
-  moveForce: 365
-  moveSpeed: 2
+  moveSpeed: 3
+  grounded: 0
   wilhelmScream: {fileID: 8300000, guid: e12390effe48c4820adcb013775995ad, type: 3}
   bringItOn: {fileID: 8300000, guid: 27cbebf9d650249e5b032494eae5322c, type: 3}
-  grounded: 0
 --- !u!212 &212239919171924904
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -676,7 +649,7 @@ SpriteRenderer:
   m_SortingLayerID: -1783731295
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: e7d3a1e0e2fac4bd48b6734c2daf4fe1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a430e0cd5cc04cfda3873ae14589925, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -700,7 +673,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 999db0fbe1d84f749942ab46005b00a4, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -788,7 +761,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c5f8979fcc4fe40929aa9e14b7f96d46, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

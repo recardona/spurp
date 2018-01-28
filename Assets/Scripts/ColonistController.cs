@@ -16,13 +16,15 @@ public class ColonistController : MonoBehaviour
 	public AudioClip bringItOn;				// "Bring it on!"
 
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
-
+	private Animator colonistAnimator;		// A reference to the animator.
 
 
 	void Awake()
 	{
 		// Setting up references.
 		groundCheck = transform.Find("groundCheck");
+		colonistAnimator = GetComponent<Animator>();
+		colonistAnimator.Play("ColonistSpawn");
 
 		// Calculate distance to ground.
 		RaycastHit2D downwardRay = Physics2D.Raycast(groundCheck.position, Vector2.down);
