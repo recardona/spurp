@@ -587,7 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingRight: 1
   jump: 0
-  deathFallDistance: 7
+  damageFallDistance: 7
   moveForce: 365
   moveSpeed: 2
   wilhelmScream: {fileID: 8300000, guid: e12390effe48c4820adcb013775995ad, type: 3}

@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ColonistHealth : MonoBehaviour
 {	
+	[HideInInspector]
+	public float touchdownDamage = 0f;			// The damage done to the colonist when they've touched down for the first time.
+
 	public float health = 100f;					// The colonist's health.
 	public SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	public float repeatDamagePeriod = 2f;		// How frequently the colonist can be damaged.
@@ -14,7 +17,7 @@ public class ColonistHealth : MonoBehaviour
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
 	private ColonistController playerControl;	// Reference to the PlayerControl script.
 	private Animator anim;						// Reference to the Animator on the player
-
+	private bool hasTouchedDownBefore;			// Whether the colonist has made contact on the ground before.
 
 	void Awake ()
 	{
@@ -24,10 +27,27 @@ public class ColonistHealth : MonoBehaviour
 
 		// Getting the intial scale of the healthbar (whilst the colonist has full health).
 		healthScale = healthBar.transform.localScale;
+
+		// When starting, the colonist has not touched down before.
+		hasTouchedDownBefore = false;
 	}
 
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		// When the colonist hits the ground for the first time...
+		if (col.gameObject.tag == "ground" && !hasTouchedDownBefore) 
+		{
+			hasTouchedDownBefore = true;
 
+			// If there's damage to take, take it.
+			if (touchdownDamage > 0f) 
+			{
+				TakeDamage(touchdownDamage);
+				touchdownDamage = 0f;
+			}
 
+		}
+	}
 
 	void OnCollisionStay2D (Collision2D col)
 	{
@@ -74,8 +94,7 @@ public class ColonistHealth : MonoBehaviour
 		}
 	}
 
-
-	void TakeDamage (Transform enemy)
+	public void TakeDamage(Transform enemy)
 	{
 		// Make sure the player can't jump.
 		playerControl.jump = false;
@@ -97,8 +116,18 @@ public class ColonistHealth : MonoBehaviour
 		AudioSource.PlayClipAtPoint(ouchClips[i], transform.position);
 	}
 
+	// Take a raw amount of damage.
+	public void TakeDamage(float amount)
+	{
+		// Reduce the player's health by the amount.
+		health -= amount;
 
-	public void UpdateHealthBar ()
+		// Update what the health bar looks like.
+		UpdateHealthBar();
+	}
+
+	// Updates the health UI above the colonist.
+	public void UpdateHealthBar()
 	{
 		// Set the health bar's colour to proportion of the way between green and red based on the player's health.
 		healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);

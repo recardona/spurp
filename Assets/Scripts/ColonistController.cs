@@ -8,7 +8,7 @@ public class ColonistController : MonoBehaviour
 	[HideInInspector]
 	public bool jump = false;				// Condition for whether the player should jump.
 
-	public float deathFallDistance;			// Vertical distance at which if this colonist is spawned, it will die.
+	public float damageFallDistance;			// Vertical distance at which if this colonist is spawned, it will die.
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.
 	public float moveSpeed = 2f;			// The speed the colonist moves at.
 
@@ -32,15 +32,22 @@ public class ColonistController : MonoBehaviour
 		// Calculate distance to ground.
 		RaycastHit2D downwardRay = Physics2D.Raycast(groundCheck.position, Vector2.down);
 		float fallDistance = downwardRay.distance;
-		print(fallDistance);
 
 		// If there is no audio playing...
 		if(!GetComponent<AudioSource>().isPlaying)
 		{
-			// If the fall distance is greater than 7, the character is going to die.
-			if(fallDistance > deathFallDistance)
+			// If the fall distance is greater than 7, the character will take some damage.
+			if (fallDistance > damageFallDistance) {
+
+				// Play an audio clip.
 				GetComponent<AudioSource>().clip = wilhelmScream;
 
+				// Set damage to take in the future.
+				float damage = fallDistance * 5;
+				GetComponent<ColonistHealth>().touchdownDamage = damage;
+			}
+
+			// Otherwise, the character will yell: "bring it on!"
 			else
 				GetComponent<AudioSource>().clip = bringItOn;
 
