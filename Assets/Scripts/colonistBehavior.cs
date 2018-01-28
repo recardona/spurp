@@ -31,7 +31,7 @@ public class colonistBehavior : MonoBehaviour {
 		if (startup == true) {
 			startup = false;
 			myScreamingAudioSource = GameObject.Find ("colonistScreamingSound").GetComponent<AudioSource> ();
-			myScreamingAudioSource.Play ();
+//			myScreamingAudioSource.Play ();
 		}
 	}
 }

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class enemyShipMovement : MonoBehaviour {
 
+
+	public void buggerOff() {
+
+	}
+
+
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
