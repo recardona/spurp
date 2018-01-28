@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1159439246322876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -15, z: -5}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 4952986989572464}
@@ -346,7 +346,7 @@ MonoBehaviour:
   gravitationUnit: 0
   thrusterSound: {fileID: 0}
   spawnSound: {fileID: 8300000, guid: dde3d4ca6565c4bc5aa2f9db8c1777ed, type: 3}
-  colonist: {fileID: 1845088747574460, guid: 697fe88d4d2314caf9c1f8c17cd7d055, type: 2}
+  colonist: {fileID: 1576119716835696, guid: 697fe88d4d2314caf9c1f8c17cd7d055, type: 2}
   colonistSpeed: 10
   pmissile: {fileID: 1504569460261530, guid: 2b9bd63f3e3f647f4a7a8d9460ea2555, type: 2}
 --- !u!212 &212576617813242890

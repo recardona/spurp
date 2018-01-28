@@ -36,6 +36,6 @@ Material:
     - _EnableExternalAlpha: 0
     m_Colors:
     - <noninit>: {r: 0, g: 9.582919e-35, b: 0, a: 9.5828825e-35}
-    - _Color: {r: 0, g: 0.5441177, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
