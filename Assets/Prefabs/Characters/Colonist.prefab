@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4562882974181862}
   - component: {fileID: 114509418637967028}
   m_Layer: 0
-  m_Name: ui_healthDisplay
+  m_Name: Health
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,11 +99,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4521321137272998}
   - component: {fileID: 114003116345961378}
+  - component: {fileID: 114920363325364438}
   - component: {fileID: 50765665214896530}
   - component: {fileID: 61331216591181610}
   - component: {fileID: 58361847670710200}
   - component: {fileID: 95254090277623840}
-  - component: {fileID: 114754599422621364}
   - component: {fileID: 82148881766841084}
   m_Layer: 9
   m_Name: Colonist
@@ -166,7 +166,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1489790628352134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4521321137272998}
@@ -192,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1845088747574460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.4458284, y: -0.5780077, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 4124015967017412}
@@ -289,7 +289,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.45}
+  m_Offset: {x: 0, y: -0.32}
   serializedVersion: 2
   m_Radius: 0.37
 --- !u!61 &61331216591181610
@@ -588,7 +588,7 @@ MonoBehaviour:
   facingRight: 1
   jump: 0
   moveForce: 365
-  maxSpeed: 2.5
+  moveSpeed: 2
   jumpClips:
   - {fileID: 8300000, guid: 50a8d8a939a0f4e77a0dac6ecd2e582b, type: 3}
   - {fileID: 8300000, guid: fc55d077383484ac0ad66aa17fcd746f, type: 3}
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 1.2, z: 0}
   target: {fileID: 4521321137272998}
---- !u!114 &114754599422621364
+--- !u!114 &114920363325364438
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -640,18 +640,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1845088747574460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52121b47a452546fb88cf2e9a9352f56, type: 3}
+  m_Script: {fileID: 11500000, guid: 4099ac9ed36ab412b97d0a4159053f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  repeatDamagePeriod: 0.35
+  healthBar: {fileID: 212490189032307610}
+  repeatDamagePeriod: 0.25
   ouchClips:
   - {fileID: 8300000, guid: 16883b69910904c908f8738ee6d16a7f, type: 3}
   - {fileID: 8300000, guid: 4825e9268b7c84159b1f2b9cb54850b1, type: 3}
   - {fileID: 8300000, guid: c6cea8437a02b40b78dfaf913b99be0d, type: 3}
   - {fileID: 8300000, guid: 4baef03e1cc8f4ab69708f3aedbce21c, type: 3}
-  hurtForce: 100
-  damageAmount: 10
+  hurtForce: 500
+  damageAmount: 1
 --- !u!212 &212490189032307610
 SpriteRenderer:
   m_ObjectHideFlags: 1

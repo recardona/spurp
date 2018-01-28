@@ -10,7 +10,7 @@ public class ColonistController : MonoBehaviour
 
 
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.
-	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
+	public float moveSpeed = 2f;			// The speed the colonist moves at.
 	public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 	public AudioClip[] taunts;				// Array of clips for when the player taunts.
@@ -31,11 +31,6 @@ public class ColonistController : MonoBehaviour
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
 
-		// Flip a coin for direction.
-		if (Random.value > 0.5)
-			horizontalInput = 1.0f;
-		else
-			horizontalInput = -1.0f;
 	}
 
 
@@ -52,49 +47,60 @@ public class ColonistController : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		// Cache the horizontal input.
-		float h = horizontalInput;
+		// Set the colonist's velocity to moveSpeed in the x direction.
+		GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
-		// The Speed animator parameter is set to the absolute value of the horizontal input.
-		anim.SetFloat("Speed", Mathf.Abs(h));
 
-		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
-		if(h * GetComponent<Rigidbody2D>().velocity.x < maxSpeed)
-			// ... add a force to the player.
-			GetComponent<Rigidbody2D>().AddForce(Vector2.right * h * moveForce);
+//		// Cache the horizontal input.
+//		float h = horizontalInput;
+//
+//		// The Speed animator parameter is set to the absolute value of the horizontal input.
+//		anim.SetFloat("Speed", Mathf.Abs(h));
+//
+//		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
+//		if(h * GetComponent<Rigidbody2D>().velocity.x < maxSpeed)
+//			// ... add a force to the player.
+//			GetComponent<Rigidbody2D>().AddForce(Vector2.right * h * moveForce);
+//
+//		// If the player's horizontal velocity is greater than the maxSpeed...
+//		if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
+//			// ... set the player's velocity to the maxSpeed in the x axis.
+//			GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+//
+//		// If the input is moving the player right and the player is facing left...
+//		if(h > 0 && !facingRight)
+//			// ... flip the player.
+//			Flip();
+//		// Otherwise if the input is moving the player left and the player is facing right...
+//		else if(h < 0 && facingRight)
+//			// ... flip the player.
+//			Flip();
+//		// If the player should jump...
+//		if(jump)
+//		{
+//			// Set the Jump animator trigger parameter.
+//			anim.SetTrigger("Jump");
+//
+//			// Play a random jump audio clip.
+//			int i = Random.Range(0, jumpClips.Length);
+//			AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
+//
+//			// Add a vertical force to the player.
+//			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+//
+//			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
+//			jump = false;
+//		}
+	}
 
-		// If the player's horizontal velocity is greater than the maxSpeed...
-		if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
-			// ... set the player's velocity to the maxSpeed in the x axis.
-			GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
-
-		// If the input is moving the player right and the player is facing left...
-		if(h > 0 && !facingRight)
-			// ... flip the player.
-			Flip();
-		// Otherwise if the input is moving the player left and the player is facing right...
-		else if(h < 0 && facingRight)
-			// ... flip the player.
-			Flip();
-
-		// If the player should jump...
-		if(jump)
+	void OnCollisionEnter2D (Collision2D col)
+	{
+		// If the colonist
+		if (col.gameObject.tag == "Obstacle") 
 		{
-			// Set the Jump animator trigger parameter.
-			anim.SetTrigger("Jump");
-
-			// Play a random jump audio clip.
-			int i = Random.Range(0, jumpClips.Length);
-			AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
-
-			// Add a vertical force to the player.
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
-
-			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
-			jump = false;
+			Flip ();
 		}
 	}
-	
 	
 	public void Flip ()
 	{

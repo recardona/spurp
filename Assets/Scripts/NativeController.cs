@@ -3,7 +3,10 @@ using System.Collections;
 
 public class NativeController : MonoBehaviour
 {
-	public float moveSpeed = 2f;		// The speed the enemy moves at.
+	public float health = 100f;			// The native's health.
+	public SpriteRenderer healthBar;	// Reference to the sprite renderer of the health bar.
+
+	public float moveSpeed = 2f;		// The speed the native moves at.
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
@@ -16,7 +19,6 @@ public class NativeController : MonoBehaviour
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
-	private Score score;				// Reference to the Score script.
 
 	
 	void Awake()
@@ -24,7 +26,6 @@ public class NativeController : MonoBehaviour
 		// Setting up the references.
 		ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		frontCheck = transform.Find("frontCheck").transform;
-		score = GameObject.Find("Score").GetComponent<Score>();
 	}
 
 	void FixedUpdate ()
@@ -64,7 +65,7 @@ public class NativeController : MonoBehaviour
 		HP--;
 	}
 	
-	void Death()
+	public void Death()
 	{
 		// Find all of the sprite renderers on this object and it's children.
 		SpriteRenderer[] otherRenderers = GetComponentsInChildren<SpriteRenderer>();
@@ -80,7 +81,7 @@ public class NativeController : MonoBehaviour
 		ren.sprite = deadEnemy;
 
 		// Increase the score by 100 points
-		score.score += 100;
+		// score.score += 100;
 
 		// Set dead to true.
 		dead = true;
@@ -103,9 +104,6 @@ public class NativeController : MonoBehaviour
 		Vector3 scorePos;
 		scorePos = transform.position;
 		scorePos.y += 1.5f;
-
-		// Instantiate the 100 points prefab at this point.
-		Instantiate(hundredPointsUI, scorePos, Quaternion.identity);
 	}
 
 
@@ -116,4 +114,7 @@ public class NativeController : MonoBehaviour
 		enemyScale.x *= -1;
 		transform.localScale = enemyScale;
 	}
+
+
+
 }
