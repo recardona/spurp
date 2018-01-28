@@ -8,14 +8,12 @@ public class ColonistController : MonoBehaviour
 	[HideInInspector]
 	public bool jump = false;				// Condition for whether the player should jump.
 
+	public float deathFallDistance;			// Vertical distance at which if this colonist is spawned, it will die.
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.
 	public float moveSpeed = 2f;			// The speed the colonist moves at.
-	public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
-	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
-	public AudioClip[] taunts;				// Array of clips for when the player taunts.
-	public float tauntProbability = 50f;	// Chance of a taunt happening.
-	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
+
 	public AudioClip wilhelmScream;			// Self-explanatory.
+	public AudioClip bringItOn;				// "Bring it on!"
 
 
 	private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
@@ -31,11 +29,22 @@ public class ColonistController : MonoBehaviour
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
 
+		// Calculate distance to ground.
+		RaycastHit2D downwardRay = Physics2D.Raycast(groundCheck.position, Vector2.down);
+		float fallDistance = downwardRay.distance;
+		print(fallDistance);
+
 		// If there is no audio playing...
 		if(!GetComponent<AudioSource>().isPlaying)
 		{
-			// Play the scream.
-			GetComponent<AudioSource>().clip = wilhelmScream;
+			// If the fall distance is greater than 7, the character is going to die.
+			if(fallDistance > deathFallDistance)
+				GetComponent<AudioSource>().clip = wilhelmScream;
+
+			else
+				GetComponent<AudioSource>().clip = bringItOn;
+
+			// Play the spawn audio clip.
 			GetComponent<AudioSource>().Play();
 		}
 	}
@@ -45,6 +54,9 @@ public class ColonistController : MonoBehaviour
 	{
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
+
+
+
 
 		// If the jump button is pressed and the player is grounded then the player should jump.
 		if(Input.GetButtonDown("Jump") && grounded)
@@ -118,43 +130,5 @@ public class ColonistController : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
-	}
-
-
-	public IEnumerator Taunt()
-	{
-		// Check the random chance of taunting.
-		float tauntChance = Random.Range(0f, 100f);
-		if(tauntChance > tauntProbability)
-		{
-			// Wait for tauntDelay number of seconds.
-			yield return new WaitForSeconds(tauntDelay);
-
-			// If there is no clip currently playing.
-			if(!GetComponent<AudioSource>().isPlaying)
-			{
-				// Choose a random, but different taunt.
-				tauntIndex = TauntRandom();
-
-				// Play the new taunt.
-				GetComponent<AudioSource>().clip = taunts[tauntIndex];
-				GetComponent<AudioSource>().Play();
-			}
-		}
-	}
-
-
-	int TauntRandom()
-	{
-		// Choose a random index of the taunts array.
-		int i = Random.Range(0, taunts.Length);
-
-		// If it's the same as the previous taunt...
-		if(i == tauntIndex)
-			// ... try another random taunt.
-			return TauntRandom();
-		else
-			// Otherwise return this index.
-			return i;
 	}
 }

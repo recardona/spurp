@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class shipMovement : MonoBehaviour {
 
-	public bool rightRotation;
-	public bool leftRotation;
-	public bool thrustOn;
-	public bool dropOut;
+	public bool rightRotation;			// Whether we're engaging the right rotation.	(D)
+	public bool leftRotation;			// Whether we're engaging the left rotation.	(A)
+	public bool thrustOn;				// Whether we're using the ship's thrusters.	(W)
+	public bool dropOut;				// Whether we're dropping a colonist.			(S)
 	public bool freezeShip;
 	public bool missileLaunch;
 
-	public Rigidbody2D rb;
+
 	public float thrust;
-
 	public int rotationUnit;
-
 	public int gravitationUnit;
 
+	public AudioClip thrusterSound; 	// Clip for when the rocket is using its thrusters.
+	public AudioClip spawnSound;		// Clip for when the rocket is spawning a colonist.
 
 	AudioSource m_MyEngineAudioSource;
 	AudioSource m_MyPoopingAudioSource;
@@ -44,13 +44,9 @@ public class shipMovement : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
-
-
 		Debug.Log ("COLLISION");
 
-		print (col.gameObject.name);
-		if(col.gameObject.name == "planetGround")
-		{
+		if(col.gameObject.name == "planetGround") {
 			Destroy(this.gameObject);
 		}
 	}
@@ -61,7 +57,6 @@ public class shipMovement : MonoBehaviour {
 
 		gravitationUnit = 2;
 		thrust = 7;
-		rb = GetComponent<Rigidbody2D> ();
 
 		rotationUnit = 4;
 		rightRotation = false;
@@ -81,8 +76,8 @@ public class shipMovement : MonoBehaviour {
 
 		//Fetch the AudioSource from the GameObject
 		m_MyEngineAudioSource = GameObject.Find("playerEngineSound").GetComponent<AudioSource>();
-		//Fetch the AudioSource from the GameObject
-		m_MyPoopingAudioSource = GameObject.Find("playerPoopingSound").GetComponent<AudioSource>();
+
+
 		//Ensure the toggle is set to true for the music to play at start-up
 		m_EnginePlay = false;
 		m_EngineToggleChange = true;
@@ -246,7 +241,7 @@ public class shipMovement : MonoBehaviour {
 
 		// thrust
 		if (thrustOn == true) {
-			rb.AddForce (transform.up * thrust);
+			GetComponent<Rigidbody2D>().AddForce (transform.up * thrust);
 		}
 
 		// engine sound toggle
@@ -285,7 +280,8 @@ public class shipMovement : MonoBehaviour {
 				poopTimeStamp = Time.time + poopCoolDownPeriodInSeconds;
 
 				// need to play animation here for pooping player ship
-				m_MyPoopingAudioSource.Play ();
+				GetComponent<AudioSource>().clip = spawnSound;
+				GetComponent<AudioSource>().Play();
 
 				// this is where the call to create the colonist comes in
 				// pass in the point of spawn and the vectors for linear and angular velocity
@@ -304,7 +300,7 @@ public class shipMovement : MonoBehaviour {
 				colonistClone.GetComponent<Rigidbody2D> ().AddForce (vec);
 			}
 		} else {
-			m_MyPoopingAudioSource.Stop ();
+			GetComponent<AudioSource>().Stop();
 
 		} 
 	}
