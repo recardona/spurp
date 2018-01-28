@@ -504,10 +504,11 @@ MonoBehaviour:
   dropOut: 0
   freezeShip: 0
   missileLaunch: 0
-  rb: {fileID: 0}
   thrust: 0
   rotationUnit: 0
   gravitationUnit: 0
+  thrusterSound: {fileID: 0}
+  spawnSound: {fileID: 0}
   myHornAudioSource: {fileID: 0}
   myPoopAudioSource: {fileID: 0}
   colonist: {fileID: 1876549241209056, guid: 395e632c21c1c419a908215b4c109274, type: 2}
