@@ -18,14 +18,12 @@ public class ColonistHealth : MonoBehaviour
 	private float lastHitTime;					// The time at which the player was last hit.
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
 	private ColonistController playerControl;	// Reference to the PlayerControl script.
-	private Animator anim;						// Reference to the Animator on the player
 	private bool hasTouchedDownBefore;			// Whether the colonist has made contact on the ground before.
 
 	void Awake ()
 	{
 		// Setting up references.
 		playerControl = GetComponent<ColonistController>();
-		anim = GetComponent<Animator>();
 
 		// Getting the intial scale of the healthbar (whilst the colonist has full health).
 		healthScale = healthBar.transform.localScale;
@@ -41,11 +39,13 @@ public class ColonistHealth : MonoBehaviour
 		{
 			hasTouchedDownBefore = true;
 
+
 			// If there's damage to take, take it.
 			if (touchdownDamage > 0f) 
 			{
 				TakeDamage(touchdownDamage);
 				touchdownDamage = 0f;
+				playerControl.SetGrounded();
 			}
 
 			transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
@@ -93,7 +93,7 @@ public class ColonistHealth : MonoBehaviour
 					GetComponentInChildren<Gun>().enabled = false;
 
 					// ... Trigger the 'Die' animation state
-					anim.SetTrigger("Die");
+					// anim.SetTrigger("Die");
 				}
 			}
 		}

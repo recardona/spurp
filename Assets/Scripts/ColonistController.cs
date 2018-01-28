@@ -24,7 +24,10 @@ public class ColonistController : MonoBehaviour
 		// Setting up references.
 		groundCheck = transform.Find("groundCheck");
 		colonistAnimator = GetComponent<Animator>();
-		colonistAnimator.Play("ColonistSpawn");
+
+		colonistAnimator.SetBool("Walking Right", true);
+		colonistAnimator.SetBool("Walking Left", false);
+
 
 		// Calculate distance to ground.
 		RaycastHit2D downwardRay = Physics2D.Raycast(groundCheck.position, Vector2.down);
@@ -59,14 +62,16 @@ public class ColonistController : MonoBehaviour
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
 
-
-
-
 		// If the jump button is pressed and the player is grounded then the player should jump.
 		if(Input.GetButtonDown("Jump") && grounded)
 			jump = true;
 	}
 
+	public void SetGrounded()
+	{
+		colonistAnimator.SetBool("Grounded", true);
+		grounded = true;
+	}
 
 	void FixedUpdate ()
 	{
@@ -87,12 +92,28 @@ public class ColonistController : MonoBehaviour
 		}
 
 		// If there are more on the left, and we're going right, flip.
-		if (onTheLeft > onTheRight && transform.localScale.x > 0)
+		if (onTheLeft > onTheRight && transform.localScale.x > 0) {
 			Flip();
+		}
 
 		// If there are more on the right, and we're going left, flip.
-		else if (onTheRight > onTheLeft && transform.localScale.x < 0)
+		else if (onTheRight > onTheLeft && transform.localScale.x < 0) {
 			Flip();
+		}
+
+		if (transform.localScale.x > 0) 
+		{
+			colonistAnimator.SetBool("Walking Right", true);
+			colonistAnimator.SetBool("Walking Left", false);
+		} 
+
+		else 
+		{	
+			colonistAnimator.SetBool("Walking Left", true);
+			colonistAnimator.SetBool("Walking Right", false);
+
+		}
+			
 
 		// Set the colonist's velocity to moveSpeed in the x direction.
 		GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
@@ -146,6 +167,11 @@ public class ColonistController : MonoBehaviour
 		if (col.gameObject.tag == "Obstacle") 
 		{
 			Flip ();
+		}
+
+		if (col.gameObject.tag == "ground") 
+		{
+			SetGrounded();
 		}
 	}
 	
