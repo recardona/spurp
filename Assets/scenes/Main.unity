@@ -113,48 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &55166606
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4568336795526248, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 13.086453
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568336795526248, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.3773725
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568336795526248, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -16.560364
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568336795526248, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568336795526248, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568336795526248, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568336795526248, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568336795526248, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-      propertyPath: m_RootOrder
-      value: 23
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &60236110
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +266,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 92576577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000014305115, y: 0.042398036, z: -2.8000011}
+  m_LocalPosition: {x: 0.0000009536743, y: 0.042398036, z: -2.8000011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 905026312}
@@ -1050,7 +1008,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1073,7 +1031,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 631593154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0000009536743, y: 0.042398036, z: -2.8000011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2028,7 +1986,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1381563547
 GameObject:
@@ -2376,8 +2334,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4584657239559442, guid: dd3ab513b88df4d4db3b71dbb407782c, type: 2}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 212717180699038556, guid: dd3ab513b88df4d4db3b71dbb407782c,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 421561c5cffa142c08f1ddd001572294,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd3ab513b88df4d4db3b71dbb407782c, type: 2}
   m_IsPrefabParent: 0
@@ -2452,7 +2416,7 @@ Transform:
   m_LocalScale: {x: 1.0625, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1586461002
 GameObject:
@@ -2791,7 +2755,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2126548223
 Animator:
