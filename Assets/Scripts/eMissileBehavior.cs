@@ -10,7 +10,9 @@ public class eMissileBehavior : MonoBehaviour
 
 	public GameObject myShip;
 	public GameObject myFlame;
-
+	public bool lit;
+	public float litDistance;
+	public float thrust;
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
@@ -49,12 +51,15 @@ public class eMissileBehavior : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 
+		lit = false;
+		litDistance = 1.0f;
+		thrust = 300.0f;
 
 		myLaunchAudioSource = GameObject.Find ("pMissileLaunchSound").GetComponent<AudioSource> ();
 		myLaunchAudioSource.PlayOneShot(myLaunchAudioSource.clip);
 
-		myShip = GameObject.Find ("PlanetShip");
-		myFlame = GameObject.Find ("blueFlame");
+		myShip = this.gameObject;
+//		myFlame = GameObject.Find ("blueFlame");
 
 		//		transform.rotation = myShip.GetComponent<Transform> ().rotation;
 
@@ -69,10 +74,31 @@ public class eMissileBehavior : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
+		if (myShip != this.gameObject) {
+			if ((lit == false) && (Vector3.Distance (myShip.transform.position, transform.position) >= litDistance)) {
 
-		// if more than x units away from home ship
-		// find target and get force applied to race towards target
+				Debug.Log ("My ship is " + myShip.name);
+				Debug.Log ("Actual distance at lighting is " + Vector3.Distance (myShip.transform.position, transform.position));
+				lit = true;
+
+				// point missile at target
+
+				Vector3 diff = myShip.transform.position - transform.position;
+				diff.Normalize ();
+
+				float rot_z = Mathf.Atan2 (diff.y, diff.x) * Mathf.Rad2Deg;
+				transform.rotation = Quaternion.Euler (0f, 0f, rot_z - 90);
+
+				// give missile force to hit target
+
+				GetComponent<Rigidbody2D> ().AddForce (transform.up * thrust);
+
+			}
+
+			// if more than x units away from home ship
+			// find target and get force applied to race towards target
 
 
+		}
 	}
 }

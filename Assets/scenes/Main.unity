@@ -152,6 +152,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 1772873806976198, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
   m_IsPrefabParent: 0
@@ -2977,7 +2981,7 @@ Prefab:
         type: 2}
     - target: {fileID: 1249007163651050, guid: 81a086d19a15c4e62942bcfb2ee2e6f8, type: 2}
       propertyPath: m_TagString
-      value: Friend
+      value: ExplosionFX
       objectReference: {fileID: 0}
     - target: {fileID: 114379705043547584, guid: 81a086d19a15c4e62942bcfb2ee2e6f8,
         type: 2}

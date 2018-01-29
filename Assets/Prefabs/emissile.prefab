@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114422179633345272}
   m_Layer: 10
   m_Name: emissile
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,6 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myShip: {fileID: 0}
   myFlame: {fileID: 0}
+  lit: 0
+  litDistance: 0
+  thrust: 0
 --- !u!212 &212625533853791130
 SpriteRenderer:
   m_ObjectHideFlags: 1

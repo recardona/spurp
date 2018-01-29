@@ -90,11 +90,11 @@ public class EnemyShipBehavior : MonoBehaviour {
 					if (target.GetComponent<Transform> ().position.x >= transform.position.x) {
 
 						// rotate 90 degrees counter clockwise
-						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation * Quaternion.Euler(0,90,0));
+						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + .5f, 7), Quaternion.Euler(0,0,270));
 					} else {
 
 						// rotate 90 degrees clockwise
-						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation * Quaternion.Euler(0,-90,0));
+						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + .5f, 7), Quaternion.Euler(0,0,90));
 
 					}
 
@@ -104,13 +104,13 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 						// rotate 90 degrees counter clockwise
 //						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - 1, transform.position.z), transform.rotation * Quaternion.Euler(0,90,0));
-						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - 1, 7), Quaternion.Euler(0,0,270));
+						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - .5f, 7), Quaternion.Euler(0,0,270));
 
 					} else {
 
 						// rotate 90 degrees clockwise
 //						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - 1, transform.position.z), transform.rotation * Quaternion.Euler(0,-90,0));
-								missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - 1, 7), Quaternion.Euler(0,0,90));
+								missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - .5f, 7), Quaternion.Euler(0,0,90));
 
 					}
 
@@ -129,11 +129,11 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 				if (target.GetComponent<Transform> ().position.y >= transform.position.y) {
 
-					vecMissile = new Vector2 (0, 10);
+					vecMissile = new Vector2 (0, 7);
 
 				} else {
 
-					vecMissile = new Vector2 (0, -10);
+					vecMissile = new Vector2 (0, -7);
 
 				} 
 
