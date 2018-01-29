@@ -11,6 +11,7 @@ public class shipMovement : MonoBehaviour {
 	public bool freezeShip;
 	public bool missileLaunch;
 
+	public float rotationTorque;
 
 	public float thrust;
 	public int rotationUnit;
@@ -54,6 +55,9 @@ public class shipMovement : MonoBehaviour {
 
 
 		switch (col.gameObject.tag) {
+
+		case "bumper":
+			break;
 		case "EnemyShip":
 
 			System.Random  rnd = new System.Random();
@@ -87,6 +91,9 @@ public class shipMovement : MonoBehaviour {
 			myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
 			m_MyEngineAudioSource.Stop ();
 
+			GameObject.Find ("Thrust03").GetComponent<SpriteRenderer> ().enabled = false;
+			GameObject.Find ("Thrust031").GetComponent<SpriteRenderer> ().enabled = false;
+
 			animator.SetTrigger ("shipExplode");
 
 			readyToDie = true;
@@ -119,7 +126,7 @@ public class shipMovement : MonoBehaviour {
 
 		missileCoolDownPeriodInSeconds = 1.0f;
 		missileTimeStamp = Time.time;
-
+		rotationTorque = 10.0f;
 
 		GameObject.Find ("blueFlame").GetComponent<SpriteRenderer>().enabled = false;
 		GameObject.Find ("Thrust03").GetComponent<SpriteRenderer>().enabled = false;
@@ -355,9 +362,14 @@ public class shipMovement : MonoBehaviour {
 
 			// rotate
 			if (rightRotation == true) {
-				transform.Rotate (Vector3.forward, rotationUnit * -1);
+
+				// force here that's angular
+				GetComponent<Rigidbody2D>().AddTorque(-rotationTorque);
+//				transform.Rotate (Vector3.forward, rotationUnit * -1);
 			} else if (leftRotation == true) {
-				transform.Rotate (Vector3.forward, rotationUnit);
+//				transform.Rotate (Vector3.forward, rotationUnit);
+				GetComponent<Rigidbody2D>().AddTorque(rotationTorque);
+
 			}
 
 			// thrust

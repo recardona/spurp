@@ -15,6 +15,7 @@ TagManager:
   - HealthBar
   - Friend
   - EnemyShip
+  - bumper
   layers:
   - Default
   - TransparentFX

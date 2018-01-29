@@ -82,31 +82,80 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 
 
-				GameObject missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+				GameObject missile;
+				GameObject target = GameObject.Find ("PlanetShip");
+
+				if (target.GetComponent<Transform> ().position.y >= transform.position.y) {
+
+					if (target.GetComponent<Transform> ().position.x >= transform.position.x) {
+
+						// rotate 90 degrees counter clockwise
+						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation * Quaternion.Euler(0,90,0));
+					} else {
+
+						// rotate 90 degrees clockwise
+						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation * Quaternion.Euler(0,-90,0));
+
+					}
+
+				} else {
+
+					if (target.GetComponent<Transform> ().position.x >= transform.position.x) {
+
+						// rotate 90 degrees counter clockwise
+//						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - 1, transform.position.z), transform.rotation * Quaternion.Euler(0,90,0));
+						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - 1, 7), Quaternion.Euler(0,0,270));
+
+					} else {
+
+						// rotate 90 degrees clockwise
+//						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - 1, transform.position.z), transform.rotation * Quaternion.Euler(0,-90,0));
+								missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - 1, 7), Quaternion.Euler(0,0,90));
+
+					}
+
+
+
+				}
 
 				missile.GetComponent<eMissileBehavior> ().myShip = this.gameObject;
 
-				Vector2 vecMissile = new Vector2 (transform.rotation.x * 10, transform.rotation.z * 10);
-				double radians;
-				double temp;
-				if (transform.eulerAngles.z >= 270) {
-					temp = transform.eulerAngles.z - 270;
+
+				// if target is above the ship, get vector pointing up, otherwise vector pointing down
+
+	
+				Vector2 vecMissile;
+				vecMissile = new Vector2 (transform.rotation.x * 10, transform.rotation.z * 10);
+
+				if (target.GetComponent<Transform> ().position.y >= transform.position.y) {
+
+					vecMissile = new Vector2 (0, 10);
+
 				} else {
-					temp = transform.eulerAngles.z + 90;
 
-				}
-				radians = (System.Math.PI / 180) * temp;
+					vecMissile = new Vector2 (0, -10);
 
-				vecMissile = new Vector2 (200, 200);
+				} 
 
-				Debug.Log ("eship z is " + transform.eulerAngles.z);
-				Debug.Log ("temp is " + temp);
+//				double radians;
+//				double temp;
+//				if (transform.eulerAngles.z >= 270) {
+//					temp = transform.eulerAngles.z - 270;
+//				} else {
+//					temp = transform.eulerAngles.z + 90;
+//
+//				}
+//				radians = (System.Math.PI / 180) * temp;
 
-				Debug.Log ("First is " + (float)System.Math.Cos (radians) * 200.0f);
-				Debug.Log ("Second is " + -(float)System.Math.Sin (radians) * 200.0f);
+//				vecMissile = new Vector2 (200, 200);
 
-				vecMissile = new Vector2 ((float)System.Math.Cos (radians) * 200.0f, (float)System.Math.Sin (radians) * 200.0f);
+//				Debug.Log ("eship z is " + transform.eulerAngles.z);
+//				Debug.Log ("temp is " + temp);
+//
+//				Debug.Log ("First is " + (float)System.Math.Cos (radians) * 200.0f);
+//				Debug.Log ("Second is " + -(float)System.Math.Sin (radians) * 200.0f);
 
+//				vecMissile = new Vector2 ((float)System.Math.Cos (radians) * 200.0f, (float)System.Math.Sin (radians) * 200.0f);
 
 
 				// need to adjust the vector so that they get ejected in the right direction relative to the
@@ -118,7 +167,7 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 
 //				missile.GetComponent<Rigidbody2D> ().AddForce (vecMissile);
-				missile.GetComponent<Rigidbody2D> ().AddForce (new Vector2(200,200));
+				missile.GetComponent<Rigidbody2D> ().AddForce (vecMissile);
 
 			}
 		}

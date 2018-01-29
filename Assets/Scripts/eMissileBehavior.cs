@@ -69,5 +69,10 @@ public class eMissileBehavior : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
+
+		// if more than x units away from home ship
+		// find target and get force applied to race towards target
+
+
 	}
 }
