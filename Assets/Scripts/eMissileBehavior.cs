@@ -9,6 +9,8 @@ public class eMissileBehavior : MonoBehaviour
 
 
 	public GameObject myShip;
+	public GameObject targetShip;
+
 	public GameObject myFlame;
 	public bool lit;
 	public float litDistance;
@@ -58,13 +60,16 @@ public class eMissileBehavior : MonoBehaviour
 		myLaunchAudioSource = GameObject.Find ("pMissileLaunchSound").GetComponent<AudioSource> ();
 		myLaunchAudioSource.PlayOneShot(myLaunchAudioSource.clip);
 
-		myShip = this.gameObject;
+		Debug.Log ("missile start assigned of missile " + GetInstanceID() );
+		myShip = null;
+		targetShip = GameObject.Find ("PlanetShip");
+
 //		myFlame = GameObject.Find ("blueFlame");
 
 		//		transform.rotation = myShip.GetComponent<Transform> ().rotation;
 
-		Physics2D.IgnoreCollision(myShip.GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
-		Physics2D.IgnoreCollision(myShip.GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
+//		Physics2D.IgnoreCollision(myShip.GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
+//		Physics2D.IgnoreCollision(myShip.GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
 
 
 
@@ -74,7 +79,10 @@ public class eMissileBehavior : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
-		if (myShip != this.gameObject) {
+		if (myShip != null) {
+
+//			Debug.Log ("yes");
+
 			if ((lit == false) && (Vector3.Distance (myShip.transform.position, transform.position) >= litDistance)) {
 
 				Debug.Log ("My ship is " + myShip.name);

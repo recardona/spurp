@@ -38,6 +38,8 @@ public class EnemyShipBehavior : MonoBehaviour {
 			// also need to destroy the chain and the anchor, just for niceness.
 		}
 	}
+
+
 	// Use this for initialization
 	void Start () {
 		readyToDie = false;
@@ -97,7 +99,11 @@ public class EnemyShipBehavior : MonoBehaviour {
 						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + .5f, 7), Quaternion.Euler(0,0,90));
 
 					}
+					Debug.Log ("For missile " + GetInstanceID ());
+					Debug.Log ("in ship, was assigned " + missile.GetComponent<eMissileBehavior> ().myShip);
 
+					Debug.Log ("in ship, assigning " + this.gameObject.GetInstanceID());
+					missile.GetComponent<eMissileBehavior> ().myShip = this.gameObject;
 				} else {
 
 					if (target.GetComponent<Transform> ().position.x >= transform.position.x) {
@@ -113,12 +119,16 @@ public class EnemyShipBehavior : MonoBehaviour {
 								missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - .5f, 7), Quaternion.Euler(0,0,90));
 
 					}
+					Debug.Log ("For missile " + GetInstanceID ());
+					Debug.Log ("in ship, was assigned " + missile.GetComponent<eMissileBehavior> ().myShip);
 
+					Debug.Log ("in ship, assigning " + this.gameObject.GetInstanceID());
+					missile.GetComponent<eMissileBehavior> ().myShip = this.gameObject;
 
 
 				}
 
-				missile.GetComponent<eMissileBehavior> ().myShip = this.gameObject;
+
 
 
 				// if target is above the ship, get vector pointing up, otherwise vector pointing down
