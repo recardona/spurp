@@ -11,6 +11,8 @@ public class shipMovement : MonoBehaviour {
 	public bool freezeShip;
 	public bool missileLaunch;
 
+	public int health;
+
 	public float rotationTorque;
 
 	public float thrust;
@@ -60,24 +62,27 @@ public class shipMovement : MonoBehaviour {
 			break;
 		case "EnemyMissile":
 
-			myCrashAudioSource = GameObject.Find ("pCrashSound").GetComponent<AudioSource> ();
-			myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
+			health = health - 1;
 
-			myCrashAudioSource = GameObject.Find ("pShipCrash1").GetComponent<AudioSource> ();
-			myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
+			if (health <= 0) {
+				myCrashAudioSource = GameObject.Find ("pCrashSound").GetComponent<AudioSource> ();
+				myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
 
-			myCrashAudioSource = GameObject.Find ("pShipCrash2").GetComponent<AudioSource> ();
-			myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
-			m_MyEngineAudioSource.Stop ();
+				myCrashAudioSource = GameObject.Find ("pShipCrash1").GetComponent<AudioSource> ();
+				myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
 
-			GameObject.Find ("Thrust03").GetComponent<SpriteRenderer> ().enabled = false;
-			GameObject.Find ("Thrust031").GetComponent<SpriteRenderer> ().enabled = false;
+				myCrashAudioSource = GameObject.Find ("pShipCrash2").GetComponent<AudioSource> ();
+				myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
+				m_MyEngineAudioSource.Stop ();
 
-			animator.SetTrigger ("shipExplode");
+				GameObject.Find ("Thrust03").GetComponent<SpriteRenderer> ().enabled = false;
+				GameObject.Find ("Thrust031").GetComponent<SpriteRenderer> ().enabled = false;
 
-			readyToDie = true;
+				animator.SetTrigger ("shipExplode");
 
+				readyToDie = true;
 
+			}
 			break;
 		case "EnemyShip":
 
@@ -131,6 +136,9 @@ public class shipMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		System.Random  rnd = new System.Random();
+		health = rnd.Next(1, 4); // creates a number between 1 and 3
 
 		gravitationUnit = 2;
 		thrust = 7;
