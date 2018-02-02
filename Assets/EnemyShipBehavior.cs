@@ -75,6 +75,8 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 				// if animation not playing then die
 
+				GameObject.Find ("enemyShipManager").GetComponent<enemyShipManagement> ().shipKiller (5, 30);
+
 				Destroy (this.gameObject);
 
 			}

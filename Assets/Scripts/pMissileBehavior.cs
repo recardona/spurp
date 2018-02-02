@@ -21,6 +21,15 @@ public class pMissileBehavior : MonoBehaviour {
 		print (col.gameObject.name);
 
 
+
+		if ((col.gameObject.name == "TopBumper") ||
+			(col.gameObject.name == "RightBumper")  || 
+			(col.gameObject.name == "LeftBumper") ) {
+			Destroy (this.gameObject);
+			// find all peeps in a blast radius and have them die or take damage
+		} 
+
+
 		if (col.gameObject.name == "planetGround") {
 			Destroy (this.gameObject);
 			// find all peeps in a blast radius and have them die or take damage

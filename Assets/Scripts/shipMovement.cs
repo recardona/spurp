@@ -58,6 +58,27 @@ public class shipMovement : MonoBehaviour {
 
 		case "bumper":
 			break;
+		case "EnemyMissile":
+
+			myCrashAudioSource = GameObject.Find ("pCrashSound").GetComponent<AudioSource> ();
+			myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
+
+			myCrashAudioSource = GameObject.Find ("pShipCrash1").GetComponent<AudioSource> ();
+			myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
+
+			myCrashAudioSource = GameObject.Find ("pShipCrash2").GetComponent<AudioSource> ();
+			myCrashAudioSource.PlayOneShot (myCrashAudioSource.clip);
+			m_MyEngineAudioSource.Stop ();
+
+			GameObject.Find ("Thrust03").GetComponent<SpriteRenderer> ().enabled = false;
+			GameObject.Find ("Thrust031").GetComponent<SpriteRenderer> ().enabled = false;
+
+			animator.SetTrigger ("shipExplode");
+
+			readyToDie = true;
+
+
+			break;
 		case "EnemyShip":
 
 			System.Random  rnd = new System.Random();
