@@ -18,6 +18,10 @@ public class EnemyShipBehavior : MonoBehaviour {
 	private float missileTimeStamp;
 	private float missileCoolDownPeriodInSeconds;
 
+	public GameObject missile;
+
+	public GameObject target;
+
 	public void takeDamage(){
 
 		Debug.Log ("taking damage");
@@ -55,6 +59,8 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 //		myAudio.Play ();
 
+		target = GameObject.Find ("PlanetShip");
+
 
 	}
 
@@ -84,26 +90,20 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 
 
-				GameObject missile;
-				GameObject target = GameObject.Find ("PlanetShip");
 
 				if (target.GetComponent<Transform> ().position.y >= transform.position.y) {
 
 					if (target.GetComponent<Transform> ().position.x >= transform.position.x) {
 
 						// rotate 90 degrees counter clockwise
-						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + .5f, 7), Quaternion.Euler(0,0,270));
+						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + .8f, 7), Quaternion.Euler(0,0,270));
 					} else {
 
 						// rotate 90 degrees clockwise
-						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + .5f, 7), Quaternion.Euler(0,0,90));
+						missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y + .8f, 7), Quaternion.Euler(0,0,90));
 
 					}
-					Debug.Log ("For missile " + GetInstanceID ());
-					Debug.Log ("in ship, was assigned " + missile.GetComponent<eMissileBehavior> ().myShip);
 
-					Debug.Log ("in ship, assigning " + this.gameObject.GetInstanceID());
-					missile.GetComponent<eMissileBehavior> ().myShip = this.gameObject;
 				} else {
 
 					if (target.GetComponent<Transform> ().position.x >= transform.position.x) {
@@ -119,16 +119,18 @@ public class EnemyShipBehavior : MonoBehaviour {
 								missile = Instantiate (emissile, new Vector3 (transform.position.x, transform.position.y - .5f, 7), Quaternion.Euler(0,0,90));
 
 					}
-					Debug.Log ("For missile " + GetInstanceID ());
-					Debug.Log ("in ship, was assigned " + missile.GetComponent<eMissileBehavior> ().myShip);
 
-					Debug.Log ("in ship, assigning " + this.gameObject.GetInstanceID());
-					missile.GetComponent<eMissileBehavior> ().myShip = this.gameObject;
 
 
 				}
 
+				Debug.Log ("In ship at missile creation.");
+				Debug.Log ("For missile ID " + missile.GetInstanceID ());
+//				Debug.Log ("Assigning missile's ship " + missile.GetComponent<eMissileBehavior> ().myShip.GetInstanceID ());
+//				Debug.Log ("in ship, was assigned " + missile.GetComponent<eMissileBehavior> ().myShip);
 
+				Debug.Log ("in ship, assigning launching ship " + this.gameObject.GetInstanceID());
+				missile.GetComponent<eMissileBehavior> ().myShip = this.gameObject;
 
 
 				// if target is above the ship, get vector pointing up, otherwise vector pointing down
@@ -139,11 +141,11 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 				if (target.GetComponent<Transform> ().position.y >= transform.position.y) {
 
-					vecMissile = new Vector2 (0, 7);
+					vecMissile = new Vector2 (0, 10);
 
 				} else {
 
-					vecMissile = new Vector2 (0, -7);
+					vecMissile = new Vector2 (0, -10);
 
 				} 
 
@@ -178,6 +180,7 @@ public class EnemyShipBehavior : MonoBehaviour {
 
 //				missile.GetComponent<Rigidbody2D> ().AddForce (vecMissile);
 				missile.GetComponent<Rigidbody2D> ().AddForce (vecMissile);
+
 
 			}
 		}

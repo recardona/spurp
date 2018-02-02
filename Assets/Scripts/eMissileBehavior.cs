@@ -5,6 +5,7 @@ public class eMissileBehavior : MonoBehaviour
 {
 
 	AudioSource myLaunchAudioSource;
+	AudioSource myLitAudioSource;
 	AudioSource myImpactAudioSource;
 
 
@@ -24,6 +25,11 @@ public class eMissileBehavior : MonoBehaviour
 
 		print (col.gameObject.name);
 
+		if ((col.gameObject.name == "RightBumper") ||
+			(col.gameObject.name == "LeftBumper") ||
+			(col.gameObject.name == "TopBumper")) {
+			Destroy (this.gameObject);
+		} 
 
 		if (col.gameObject.name == "planetGround") {
 			Destroy (this.gameObject);
@@ -54,14 +60,18 @@ public class eMissileBehavior : MonoBehaviour
 	void Start () {
 
 		lit = false;
-		litDistance = 1.0f;
+		litDistance = 3.3f;
 		thrust = 300.0f;
 
-		myLaunchAudioSource = GameObject.Find ("pMissileLaunchSound").GetComponent<AudioSource> ();
+		myLaunchAudioSource = GameObject.Find ("eMissileLaunchSound").GetComponent<AudioSource> ();
 		myLaunchAudioSource.PlayOneShot(myLaunchAudioSource.clip);
 
+
+		myLitAudioSource = GameObject.Find ("eMissileLightSound").GetComponent<AudioSource> ();
+		myLitAudioSource.PlayOneShot(myLitAudioSource.clip);
+
 		Debug.Log ("missile start assigned of missile " + GetInstanceID() );
-		myShip = null;
+		myShip = GameObject.FindWithTag("EnemyShip");
 		targetShip = GameObject.Find ("PlanetShip");
 
 //		myFlame = GameObject.Find ("blueFlame");
@@ -70,8 +80,6 @@ public class eMissileBehavior : MonoBehaviour
 
 //		Physics2D.IgnoreCollision(myShip.GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
 //		Physics2D.IgnoreCollision(myShip.GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
-
-
 
 
 	}
@@ -88,10 +96,10 @@ public class eMissileBehavior : MonoBehaviour
 				Debug.Log ("My ship is " + myShip.name);
 				Debug.Log ("Actual distance at lighting is " + Vector3.Distance (myShip.transform.position, transform.position));
 				lit = true;
-
+				this.GetComponent<Rigidbody2D> ().gravityScale = 0.0f;
 				// point missile at target
 
-				Vector3 diff = myShip.transform.position - transform.position;
+				Vector3 diff = targetShip.transform.position - transform.position;
 				diff.Normalize ();
 
 				float rot_z = Mathf.Atan2 (diff.y, diff.x) * Mathf.Rad2Deg;
