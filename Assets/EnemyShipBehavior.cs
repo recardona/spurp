@@ -7,6 +7,7 @@ public class EnemyShipBehavior : MonoBehaviour {
 	public int health;
 	public AudioSource myExplodeAudioSource;
 	public bool missileLaunch;
+	public float springFactor;
 
 	public bool readyToDie;
 	public GameObject emissile;
@@ -47,6 +48,7 @@ public class EnemyShipBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		readyToDie = false;
+		springFactor = 3.0f;
 
 		animator = GetComponent<Animator> ();
 //		health = 6;
@@ -67,6 +69,9 @@ public class EnemyShipBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		Vector3 oppositeDirection = GameObject.Find ("PlanetShip").GetComponent<Transform> ().position - transform.position;
+		Vector3 forceVector = oppositeDirection * springFactor;
+		this.GetComponent<Rigidbody2D> ().AddForce (forceVector, ForceMode2D.Force);
 
 		if (readyToDie) {
 
