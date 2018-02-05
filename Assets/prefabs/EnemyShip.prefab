@@ -64,7 +64,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &60084607066061020
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -337,10 +337,13 @@ MonoBehaviour:
   health: 3
   myExplodeAudioSource: {fileID: 0}
   missileLaunch: 0
+  springFactor: 0
   readyToDie: 0
   emissile: {fileID: 1772873806976198, guid: 8d9bbcd02c8d641dfbc18b740cefcf22, type: 2}
   animator: {fileID: 0}
   myAudio: {fileID: 0}
+  missile: {fileID: 0}
+  target: {fileID: 0}
 --- !u!212 &212022946939107268
 SpriteRenderer:
   m_ObjectHideFlags: 1

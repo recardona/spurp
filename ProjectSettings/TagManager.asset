@@ -16,6 +16,8 @@ TagManager:
   - Friend
   - EnemyShip
   - bumper
+  - EnemyMissile
+  - FriendlyMissile
   layers:
   - Default
   - TransparentFX

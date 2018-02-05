@@ -52,6 +52,8 @@ public class enemyShipManagement : MonoBehaviour {
 		int rand = rnd.Next(min, randy); // creates a number between min and randy
 
 		spawnTimeStamp = Time.time + rand;  // assuming rand is seconds here.  We'll see! RMY
+		Debug.Log ("** Setting sts to " + spawnTimeStamp);
+		Debug.Log ("** when time is " + Time.time);
 
 
 		// start the timer for current time + rand;
@@ -68,7 +70,7 @@ public class enemyShipManagement : MonoBehaviour {
 		// then spawn a ship at the level spawn point
 
 		if (enemyShip == null) {
-			if (spawnTimeStamp <= Time.time) {
+			if (Time.time > spawnTimeStamp) {
 
 
 				System.Random rnd = new System.Random ();
@@ -99,6 +101,7 @@ public class enemyShipManagement : MonoBehaviour {
 
 
 			}
+//			Debug.Log ("No ship but waiting for timestamp");
 		}
 	}
 }

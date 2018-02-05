@@ -16,7 +16,7 @@
 	<key>CFBundleIconFile</key>
 	<string>PlayerIcon.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Company.ProductName</string>
+	<string>unity.DefaultCompany._2D v3</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleSupportedPlatforms</key>

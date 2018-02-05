@@ -11,6 +11,7 @@ public class eMissileBehavior : MonoBehaviour
 
 	public GameObject myShip;
 	public GameObject targetShip;
+	public GameObject explosion;
 
 	public GameObject myFlame;
 	public bool lit;
@@ -28,16 +29,25 @@ public class eMissileBehavior : MonoBehaviour
 		if ((col.gameObject.name == "RightBumper") ||
 			(col.gameObject.name == "LeftBumper") ||
 			(col.gameObject.name == "TopBumper")) {
+		
 			Destroy (this.gameObject);
 		} 
 
 		if (col.gameObject.name == "planetGround") {
+			Instantiate (explosion, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+
 			Destroy (this.gameObject);
 			// find all peeps in a blast radius and have them die or take damage
 		} 
 
 		else if (col.gameObject.name == "EnemyShip") {
+
 			// i disabled collisions with planetship, so this won't happen
+		} 
+		else if (col.gameObject.tag == "FriendlyMissile") {
+			// i disabled collisions with planetship, so this won't happen
+			Instantiate (explosion, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+			Destroy (this.gameObject);
 		} 
 
 		else if (col.gameObject.tag == "PlanetShip") {
@@ -46,6 +56,8 @@ public class eMissileBehavior : MonoBehaviour
 			myImpactAudioSource = GameObject.Find ("pMissileImpactOnShipSound").GetComponent<AudioSource> ();
 			myImpactAudioSource.PlayOneShot(myImpactAudioSource.clip);
 			// destroy this missile
+			Instantiate (explosion, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+
 			Destroy (this.gameObject);
 
 			// tell enemy ship to take damage and check to see if its destroyed

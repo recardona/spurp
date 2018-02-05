@@ -35,11 +35,12 @@ public class EnemyShipBehavior : MonoBehaviour {
 			// play explosition animation for this ship
 
 			// play explosion sound fo rhtis ship
-			myExplodeAudioSource = GameObject.Find ("eShipExplodeSound").GetComponent<AudioSource> ();
-			myExplodeAudioSource.PlayOneShot(myExplodeAudioSource.clip);
+//			myExplodeAudioSource = GameObject.Find ("eShipExplodeSound").GetComponent<AudioSource> ();
+//			myExplodeAudioSource.PlayOneShot(myExplodeAudioSource.clip);
+//
+//			animator.SetTrigger ("enemyShipDead");
 
-			animator.SetTrigger ("enemyShipDead");
-
+			readyToDie = true;
 			// also need to destroy the chain and the anchor, just for niceness.
 		}
 	}
@@ -69,6 +70,7 @@ public class EnemyShipBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		// this is the sorta rubber band thing for tracking player ship 
 		Vector3 oppositeDirection = GameObject.Find ("PlanetShip").GetComponent<Transform> ().position - transform.position;
 		Vector3 forceVector = oppositeDirection * springFactor;
 		this.GetComponent<Rigidbody2D> ().AddForce (forceVector, ForceMode2D.Force);
