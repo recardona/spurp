@@ -33,7 +33,9 @@ public class eMissileBehavior : MonoBehaviour
 			Destroy (this.gameObject);
 		} 
 
-		if (col.gameObject.name == "planetGround") {
+		if (col.gameObject.tag == "PlanetGround") {
+			myImpactAudioSource = GameObject.Find ("pMissileImpactOnShipSound").GetComponent<AudioSource> ();
+			myImpactAudioSource.PlayOneShot(myImpactAudioSource.clip);
 			Instantiate (explosion, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
 
 			Destroy (this.gameObject);
@@ -50,7 +52,7 @@ public class eMissileBehavior : MonoBehaviour
 			Destroy (this.gameObject);
 		} 
 
-		else if (col.gameObject.tag == "PlanetShip") {
+		else if (col.gameObject.name == "PlanetShip") {
 			// play explosion animation for this missile
 
 			myImpactAudioSource = GameObject.Find ("pMissileImpactOnShipSound").GetComponent<AudioSource> ();

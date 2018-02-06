@@ -10,7 +10,7 @@ public class pMissileBehavior : MonoBehaviour {
 
 	public GameObject myShip;
 	public GameObject myFlame;
-
+	public GameObject explosion;
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
@@ -39,8 +39,15 @@ public class pMissileBehavior : MonoBehaviour {
 			// i disabled collisions with planetship, so this won't happen
 		} 
 
+		else if (col.gameObject.tag == "EnemyMissile") {
+			// i disabled collisions with planetship, so this won't happen
+			Destroy (this.gameObject);
+
+		} 
+
 		else if (col.gameObject.tag == "EnemyShip") {
 			// play explosion animation for this missile
+			Instantiate (explosion, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
 
 			myImpactAudioSource = GameObject.Find ("pMissileImpactOnShipSound").GetComponent<AudioSource> ();
 			myImpactAudioSource.PlayOneShot(myImpactAudioSource.clip);

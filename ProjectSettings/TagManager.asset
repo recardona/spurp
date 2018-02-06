@@ -18,6 +18,7 @@ TagManager:
   - bumper
   - EnemyMissile
   - FriendlyMissile
+  - PlanetGround
   layers:
   - Default
   - TransparentFX

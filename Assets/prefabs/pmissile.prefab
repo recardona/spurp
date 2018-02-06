@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myShip: {fileID: 0}
   myFlame: {fileID: 0}
+  explosion: {fileID: 1961176931335142, guid: eb83477b59b864c4aab9e2a0fa31b7f0, type: 2}
 --- !u!212 &212320612983126608
 SpriteRenderer:
   m_ObjectHideFlags: 1
