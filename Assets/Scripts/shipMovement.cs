@@ -128,7 +128,7 @@ public class shipMovement : MonoBehaviour {
 			break;
 		}
 
-		myPoopAudioSource.PlayOneShot(myPoopAudioSource.clip);
+//		myPoopAudioSource.PlayOneShot(myPoopAudioSource.clip);
 
 
 	}

@@ -1080,7 +1080,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1103,7 +1103,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 631593154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0000014305115, y: 0.042398036, z: -2.8000011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2765,6 +2765,7 @@ GameObject:
   - component: {fileID: 1567379340}
   - component: {fileID: 1567379339}
   - component: {fileID: 1567379341}
+  - component: {fileID: 1567379342}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -2857,6 +2858,17 @@ PolygonCollider2D:
       - {x: -19.963797, y: -11.10865}
       - {x: 19.89927, y: -10.902974}
       - {x: 20.028322, y: 10.834415}
+--- !u!114 &1567379342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567379338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41b24786e46a48658bf7ed9ef108989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1586461002
 GameObject:
   m_ObjectHideFlags: 0
