@@ -42,7 +42,7 @@ public class ParallaxManager : MonoBehaviour {
 				Debug.Log ("BREAK");
 			}
 			Debug.Log ("here");
-			focus[x].transform.position = new Vector3(focus[x].transform.position.x + (diff * xrate), focus[x].transform.position.y, focus[x].transform.position.z);
+			focus[x].transform.position = new Vector3(focus[x].transform.position.x + (diff * xrate * -1.0f), focus[x].transform.position.y, focus[x].transform.position.z);
 			print(focus[x].transform.position);	
 		}
 
