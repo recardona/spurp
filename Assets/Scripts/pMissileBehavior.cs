@@ -30,8 +30,15 @@ public class pMissileBehavior : MonoBehaviour {
 		} 
 
 
-		if (col.gameObject.name == "planetGround") {
+		if (col.gameObject.tag == "PlanetGround") {
+
+			Instantiate (explosion, new Vector3 (transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+
+			myImpactAudioSource = GameObject.Find ("pMissileImpactOnShipSound").GetComponent<AudioSource> ();
+			myImpactAudioSource.PlayOneShot(myImpactAudioSource.clip);
+			// destroy this missile
 			Destroy (this.gameObject);
+
 			// find all peeps in a blast radius and have them die or take damage
 		} 
 
